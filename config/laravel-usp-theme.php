@@ -25,17 +25,29 @@ $admin = [
 
 $submenu2 = [
     [
-        'text' => 'SubItem 1',
-        'url' => 'subitem1',
+        'text' => 'Períodos',
+        'url' => 'periodos',
     ],
     [
-        'text' => 'SubItem 2',
-        'url' => 'subitem2',
-        'can' => 'admin',
+        'text' => 'Inscrições',
+        'url' => 'inscricoes',
+    ],
+    [
+        'text' => 'Modelos de E-mail',
+        'url' => 'modelosemails',
     ],
 ];
 
 $menu = [
+    [
+        # este item de menu será substituido no momento da renderização
+        'key' => 'menu_dinamico',
+    ],
+    [
+        'text' => 'Menu',
+        'submenu' => $submenu2,
+        'can' => 'user',
+    ],
 ];
 
 $right_menu = [

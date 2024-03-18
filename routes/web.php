@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PeriodoController;
+use App\Http\Controllers\InscricaoController;
+use App\Http\Controllers\ModeloEmailController;
+use App\Http\Controllers\AnexoController;
+use App\Models\Periodo;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +19,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
-});
+    $periodo = Periodo::getEmPeridoInscricao();
+    return view('main', compact("periodo"));
+})->name("home");
+
+Route::resource("periodos",PeriodoController::class);
+Route::resource("inscricoes",InscricaoController::class)->parameters(["inscricoes"=>"inscricao"]);
+Route::resource("modelosemails",ModeloEmailController::class);
+
+Route::get("/anexo/download/{anexo}",[AnexoController::class, "download"])->name("anexos.download");
