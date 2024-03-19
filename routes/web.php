@@ -25,6 +25,10 @@ Route::get('/', function () {
 
 Route::resource("periodos",PeriodoController::class);
 Route::resource("inscricoes",InscricaoController::class)->parameters(["inscricoes"=>"inscricao"]);
-Route::resource("modelosemails",ModeloEmailController::class);
+
+Route::post('/modelosemails/testar', [ModeloEmailController::class, 'testar'])->name('modelosemails.testar');
+Route::get('/modelosemails/ativar/{modelo}', [ModeloEmailController::class, 'ativar'])->name('modelosemails.ativar');
+Route::get('/modelosemails/desativar/{modelo}', [ModeloEmailController::class, 'desativar'])->name('modelosemails.desativar');
+Route::resource("modelosemails",ModeloEmailController::class)->parameters(["modelosemails"=>"modelo"]);
 
 Route::get("/anexo/download/{anexo}",[AnexoController::class, "download"])->name("anexos.download");

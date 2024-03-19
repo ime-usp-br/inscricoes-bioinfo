@@ -9,6 +9,8 @@ class ModeloEmail extends Model
 {
     use HasFactory;
 
+    protected $table = "modelos_emails";
+
     protected $fillable = [
         'nome',
         'classe',

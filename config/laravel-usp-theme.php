@@ -33,7 +33,7 @@ $submenu2 = [
         'url' => 'inscricoes',
     ],
     [
-        'text' => 'Modelos de E-mail',
+        'text' => 'E-mails',
         'url' => 'modelosemails',
     ],
 ];

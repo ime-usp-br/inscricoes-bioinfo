@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreInscricaoRequest;
 use App\Http\Requests\IndexInscricaoRequest;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NotificaBioInfoSobreInscricao;
+use App\Mail\BoletoDeInscricao;
 use App\Models\Periodo;
 use App\Models\Inscricao;
 use App\Models\Anexo;
 use App\Models\Boleto;
+use App\Models\ModeloEmail;
 use Session;
 use Auth;
 
@@ -85,6 +89,26 @@ class InscricaoController extends Controller
 
         $inscricao->boleto()->save($boleto);
         $inscricao->save();
+
+        $modelo = ModeloEmail::where([
+            "classe"=>"NotificaBioInfoSobreInscricao",
+            "frequencia_envio"=>"A cada inscrição",
+            "ativo"=>true
+            ])->first();
+
+        if($modelo){
+            Mail::to(env("MAIL_PROGRAMA"))->queue(new NotificaBioInfoSobreInscricao($inscricao, $modelo));
+        }
+
+        $modelo = ModeloEmail::where([
+            "classe"=>"BoletoDeInscricao",
+            "frequencia_envio"=>"A cada inscrição",
+            "ativo"=>true
+            ])->first();
+
+        if($modelo){
+            Mail::to($inscricao->email)->queue(new BoletoDeInscricao($inscricao, $modelo));
+        }
 
         Session::flash("alert-success", "Sua inscrição foi efetuada com sucesso! Seu número de protocolo é ".$protocolo.".");
 
