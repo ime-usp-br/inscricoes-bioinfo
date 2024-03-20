@@ -1,6 +1,7 @@
 [program:inscricoes_bioinfo]
 process_name=%(program_name)s_%(process_num)02d
 command=php {aqui vai o caminho para o diretorio do projeto}/artisan queue:work --tries=3
+user=www-data
 autostart=true
 autorestart=true
 user=root

@@ -2,7 +2,7 @@
 
 @section('content')
 @parent
-<div id="layout_conteudo">
+<div id="container">
     <div class="justify-content-center">
         <div class="col-md-12">
             <h1 class='text-center mb-5'>E-mails</h1>

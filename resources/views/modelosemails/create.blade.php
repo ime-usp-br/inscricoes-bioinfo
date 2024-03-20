@@ -2,7 +2,7 @@
 
 @section('content')
 @parent
-<div id="layout_conteudo">
+<div id="container">
     <div class="row justify-content-center">
         <div class="col-12 col-sm-11 col-md-10 col-lg-9 col-xl-8">
             <h1 class='text-center mb-5'>
