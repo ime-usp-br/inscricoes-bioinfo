@@ -50,7 +50,7 @@ class Boleto extends Model
         $codigoUnidadeDespesa = env("WS_Codigo_Unidade_Despesa");
         $codigoFonteRecurso = env("WS_Codigo_Fonte_Recurso");
         $estruturaHierarquica = env("WS_Estrutura_Hierarquica");
-        $informacoesBoletoSacado = 'Dúvidas ou demais informações, entrar em contato com o BioInfo pelo e-mail XXXX';
+        $informacoesBoletoSacado = 'Dúvidas ou demais informações, entrar em contato com o BioInfo pelo e-mail bioinformatica@usp.br';
         $instrucoesObjetoCobranca = 'Não receber após o vencimento';
 
         $clienteSoap = new nusoap_client(env("WSDL_URL"),'wsdl');
