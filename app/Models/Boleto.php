@@ -70,7 +70,7 @@ class Boleto extends Model
         $param = array ('codigoUnidadeDespesa' => $codigoUnidadeDespesa,
                         'codigoFonteRecurso' => $codigoFonteRecurso,
                         'estruturaHierarquica' => $estruturaHierarquica,
-                        'dataVencimentoBoleto' => date("d/m/Y", strtotime("+3 days")),
+                        'dataVencimentoBoleto' => date("d/m/Y", strtotime("+5 days")),
                         'valorDocumento' => $valorDocumento,
                         'valorDesconto' => $valorDesconto,
                         'tipoSacado' => $tipo_sacado,
