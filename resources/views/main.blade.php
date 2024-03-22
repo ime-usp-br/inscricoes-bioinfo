@@ -18,6 +18,9 @@
                 <form id="form-inscricao" method="POST" action="{{ route('inscricoes.store') }}" enctype='multipart/form-data'>
                     @csrf
 
+
+
+                    <p class="alert alert-info">Prazo de inscrição: {{ $periodo->data_inicio_inscricoes }} a {{ $periodo->data_final_inscricoes }} às 23:59:59 (horário de Brasília).</p>
                     <div class="row custom-form-group d-flex align-items-center">
                         <div class="col-12 col-md-auto text-md-right">
                             <label>Categoria:</label>
@@ -130,6 +133,21 @@
 
                     <hr class="my-5">
 
+                    <p class="alert alert-info">
+                        ENVIO DOS DOCUMENTOS DEVERÃO SER EM ARQUIVOS PDF<br>
+                        Histórico Escolar de Graduação oficial (acompanhado de assinatura ou código de
+                        autenticidade)<br><br>
+
+                        Histórico Escolar de Mestrado (inscrição no Curso de Doutorado)<br><br>
+
+                        Curriculum Vitae ou Curriculo Lattes em pdf<br><br>
+
+                        Carta de interesse assinada<br>
+                        Projeto de pesquisa em pdf (somente para inscrição no Curso de Doutorado Direto)<br><br>
+
+                        OPCIONAL: resultado do POSCOMP ou GRE em pdf, se tiver (ver no edital do processo seletivo
+                        para detalhes.
+                    </p>
                     <div class="custom-form-group mt-5">
                         <label class="text-justify">Documentação Completa:</label>
 
@@ -158,6 +176,11 @@
                         </div>
                     </div>
 
+                    <p class="alert alert-info">
+                    Para confirmar a inscrição, deverá efetuar o pagamento do boleto no valor de R$ 30,00 (trinta reais).<br><br>
+
+                    Não efetuamos devolução em caso de desistência.
+                    </p>
                     <div class="row custom-form-group justify-content-center mt-5">
                         <button id="btn-submit" type="submit" class="btn btn-outline-dark">
                             Enviar Inscrição

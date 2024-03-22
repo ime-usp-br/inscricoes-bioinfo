@@ -37,5 +37,12 @@ class StoreInscricaoRequest extends FormRequest
         ];
 
         return $rules;
+    }    
+    
+    public function messages()
+    {
+        return [
+            'anexosNovos.required' => 'É necessário anexar a documentação em formato PDF.',
+        ];
     }
 }
