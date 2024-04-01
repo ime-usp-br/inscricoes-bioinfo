@@ -8,8 +8,11 @@
         <div class="col-12 col-sm-9 col-md-8 col-lg-7 col-xl-6">
             @if($periodo)
                 <h1 class='text-center mt-4'>Formulário de Inscrição</h1>
-                <h3 class='text-center'>Programa de Pós-graduação em Bioinformática</h3>
-                <h4 class='text-center pb-4'>{{ $periodo->semestre }} Semestre de {{ $periodo->ano }}</h4>
+                <h5 class='text-center'>Enrollment Form</h5>
+                <h2 class='text-center'>Programa de Pós-graduação em Bioinformática</h2>
+                <h5 class='text-center'>Interunit Graduate Program in Bioinformatics</h5>
+                <h3 class='text-center'>{{ $periodo->semestre }} Semestre de {{ $periodo->ano }}</h3>
+                <h5 class='text-center pb-4'>{{ $periodo->semestre == 1 ? 'First' : 'Second' }} semester of {{ $periodo->ano }}</h5>
 
 
                 <div id="div-info">
@@ -20,23 +23,27 @@
 
 
 
-                    <p class="alert alert-info">Prazo de inscrição: {{ $periodo->data_inicio_inscricoes }} a {{ $periodo->data_final_inscricoes }} às 23:59:59 (horário de Brasília).</p>
+                    <p class="alert alert-info">
+                        Prazo de inscrição: {{ $periodo->data_inicio_inscricoes }} a {{ $periodo->data_final_inscricoes }} às 23:59:59 (horário de Brasília).<br>
+                        Enrollment: from {{ explode("/",$periodo->data_inicio_inscricoes)[1]."/".explode("/",$periodo->data_inicio_inscricoes)[0]."/".explode("/",$periodo->data_inicio_inscricoes)[2] }} to {{ explode("/",$periodo->data_final_inscricoes)[1]."/".explode("/",$periodo->data_final_inscricoes)[0]."/".explode("/",$periodo->data_final_inscricoes)[2] }} until 11:59:59 pm (BRT - Brasilian Time | GMT-03:00)
+                    
+                    </p>
                     <div class="row custom-form-group d-flex align-items-center">
                         <div class="col-12 col-md-auto text-md-right">
-                            <label>Categoria:</label>
+                            <label>Categoria(Category):</label>
                         </div>
                         <div class="col-12 col-md">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="categoria" value="Mestrado" required {{ old("categoria")=="Mestrado" ? "checked" : "" }}>
-                                <label class="font-weight-normal">Mestrado</label>
+                                <label class="font-weight-normal">Mestrado(Masters)</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="categoria" value="Doutorado" required {{ old("categoria")=="Doutorado" ? "checked" : "" }}>
-                                <label class="font-weight-normal">Doutorado</label>
+                                <label class="font-weight-normal">Doutorado(PhD)</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="categoria" value="Doutorado Direto" required {{ old("categoria")=="Doutorado Direto" ? "checked" : "" }}>
-                                <label class="font-weight-normal">Doutorado Direto</label>
+                                <label class="font-weight-normal">Doutorado Direto(Direct PhD)</label>
                             </div>
                         </div>
                     </div>
@@ -46,7 +53,7 @@
                             <label for="nome">Nome completo:</label>
                         </div>
                         <div class="col-12 col-md">
-                            <input class="custom-form-control" type="text" name="nome" id="nome" required value={{ old("nome") ?? '' }}>
+                            <input placeholder="Full name" class="custom-form-control" type="text" name="nome" id="nome" required value={{ old("nome") ?? '' }}>
                         </div>        
                     </div>
 
@@ -55,7 +62,7 @@
                             <label for="email">E-mail:</label>
                         </div>
                         <div class="col-12 col-md">
-                            <input class="custom-form-control" type="text" name="email" id="email" required value={{ old("email") ?? '' }}>
+                            <input placeholder="Email" class="custom-form-control" type="text" name="email" id="email" required value={{ old("email") ?? '' }}>
                         </div>
                     </div>
 
@@ -64,7 +71,7 @@
                             <label for="emailConfirmation">Repetir e-mail:</label>
                         </div>
                         <div class="col-12 col-md">
-                            <input class="custom-form-control" type="text" name="emailConfirmation" id="emailConfirmation">
+                            <input placeholder="Email confirmation" class="custom-form-control" type="text" name="emailConfirmation" id="emailConfirmation">
                         </div>
                     </div>
 
@@ -73,7 +80,7 @@
                             <label for="nascimento">Data de nascimento:</label>
                         </div>
                         <div class="col-12 col-md">
-                            <input class="custom-form-control" type="text" name="nascimento" id="nascimento" required value={{ old("nascimento") ?? '' }}>
+                            <input placeholder="Date of birth" class="custom-form-control" type="text" name="nascimento" id="nascimento" required value={{ old("nascimento") ?? '' }}>
                         </div>        
                     </div>
 
@@ -82,7 +89,7 @@
                             <label for="nacionalidade">Nacionalidade:</label>
                         </div>
                         <div class="col-12 col-md">
-                            <input class="custom-form-control" type="text" name="nacionalidade" id="nacionalidade" required value={{ old("nacionalidade") ?? '' }}>
+                            <input placeholder="Nationality" class="custom-form-control" type="text" name="nacionalidade" id="nacionalidade" required value={{ old("nacionalidade") ?? '' }}>
                         </div>        
                     </div>
 
@@ -91,7 +98,7 @@
                             <label for="rg">RG:</label>
                         </div>
                         <div class="col-12 col-md">
-                            <input class="custom-form-control" type="text" name="rg" id="rg" value={{ old("rg") ?? '' }}>
+                            <input placeholder="For non-Brazilians who do not have this, enter NA" class="custom-form-control" type="text" name="rg" id="rg" value={{ old("rg") ?? '' }}>
                         </div>        
                     </div>
 
@@ -100,7 +107,7 @@
                             <label for="cpf">CPF:</label>
                         </div>
                         <div class="col-12 col-md">
-                            <input class="custom-form-control" type="text" name="cpf" id="cpf" required value={{ old("cpf") ?? '' }}>
+                            <input placeholder="For non-Brazilians who do not have this, enter NA" class="custom-form-control" type="text" name="cpf" id="cpf" required value={{ old("cpf") ?? '' }}>
                         </div>        
                     </div>
 
@@ -109,7 +116,7 @@
                             <label for="rnm_passaporte">RNM ou passaporte:</label>
                         </div>
                         <div class="col-12 col-md">
-                            <input class="custom-form-control" type="text" name="rnm_passaporte" id="rnm_passaporte" value={{ old("rnm_passaporte") ?? '' }}>
+                            <input placeholder="National Migration Registry or passport number" class="custom-form-control" type="text" name="rnm_passaporte" id="rnm_passaporte" value={{ old("rnm_passaporte") ?? '' }}>
                         </div>        
                     </div>
 
@@ -118,7 +125,7 @@
                             <label for="endereco">Endereço completo:</label>
                         </div>
                         <div class="col-12 col-md">
-                            <input class="custom-form-control" type="text" name="endereco" id="endereco" required value={{ old("endereco") ?? '' }}>
+                            <input placeholder="Full address" class="custom-form-control" type="text" name="endereco" id="endereco" required value={{ old("endereco") ?? '' }}>
                         </div>
                     </div>
 
@@ -127,7 +134,7 @@
                             <label for="telefone">Telefone para contato:</label>
                         </div>
                         <div class="col-12 col-md">
-                            <input class="custom-form-control" type="text" name="telefone" id="telefone" required value={{ old("telefone") ?? '' }}>
+                            <input placeholder="contact phone" class="custom-form-control" type="text" name="telefone" id="telefone" required value={{ old("telefone") ?? '' }}>
                         </div>
                     </div>
 
@@ -148,12 +155,26 @@
                         OPCIONAL: resultado do POSCOMP ou GRE em pdf, se tiver (ver no edital do processo seletivo
                         para detalhes.
                     </p>
+                    <p class="alert alert-info">
+                        DOCUMENTS MUST BE SENT IN PDF FORMAT<br>
+                        Official Undergraduate Transcripts (signed or with authenticity code)<br><br>
+
+                        Official Graduate Transcripts (signed or with authenticity code, only for PhD and Direct PhD candidates)<br><br>
+
+                        Curriculum Vitae<br><br>
+
+                        Signed Letter of Interest<br><br>
+
+                        Research Project (only for Direct PhD candidates)<br><br>
+
+                        OPTIONAL: POSCOMP and GRE results
+                    </p>
                     <div class="custom-form-group mt-5">
-                        <label class="text-justify">Documentação Completa:</label>
+                        <label class="text-justify">Documentação Completa (Full documentation):</label>
 
                         <div class="col-lg pt-2">
                             <div id="novos-anexos"></div>
-                                <label class="font-weight-normal">Adicionar anexo</label> 
+                                <label class="font-weight-normal">Adicionar anexo (New attachment)</label> 
                                 <input id="count-new-attachment" value=0 type="hidden" disabled>
                                 <a class="btn btn-link btn-sm text-dark text-decoration-none" id="btn-addAttachment" 
                                     title="Adicionar novo anexo">
@@ -169,7 +190,7 @@
                             <canvas id="canvas" style="width: 220px;height: 88px;"></canvas>
                         </div>
                         <div class="col-12">
-                            <label>Digite os 4 caracteres acima:</label>
+                            <label>Digite os 4 caracteres acima (Type the 4 characters above):</label>
                         </div>
                         <div class="col-12">
                             <input name="captchafield" style="width:220px;" required/>
@@ -177,13 +198,18 @@
                     </div>
 
                     <p class="alert alert-info">
-                    Para confirmar a inscrição, deverá efetuar o pagamento do boleto no valor de R$ 30,00 (trinta reais).<br><br>
+                        Para confirmar a inscrição, deverá efetuar o pagamento do boleto no valor de R$ 30,00 (trinta reais).<br><br>
 
-                    Não efetuamos devolução em caso de desistência.
+                        Não efetuamos devolução em caso de desistência.
+                    </p>
+                    <p class="alert alert-info">
+                        To confirm the enrollment, you must perform the fee payment (BRL 30,00).<br><br>
+
+                        We do not provide refunds in case of withdrawal.
                     </p>
                     <div class="row custom-form-group justify-content-center mt-5">
                         <button id="btn-submit" type="submit" class="btn btn-outline-dark">
-                            Enviar Inscrição
+                            Submit Application
                         </button>
                     </div>
                 </form>
