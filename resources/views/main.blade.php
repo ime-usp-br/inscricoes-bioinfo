@@ -107,7 +107,7 @@
                             <label for="cpf">CPF:</label>
                         </div>
                         <div class="col-12 col-md">
-                            <input placeholder="For non-Brazilians who do not have this, enter NA" class="custom-form-control" type="text" name="cpf" id="cpf" required value={{ old("cpf") ?? '' }}>
+                            <input placeholder="For non-Brazilians who do not have this, enter NA" class="custom-form-control" type="text" name="cpf" id="cpf" value={{ old("cpf") ?? '' }}>
                         </div>        
                     </div>
 
@@ -334,7 +334,9 @@
                 }
             },
             cpf : {
-                required: true,
+                required: function(element){
+                  return $("#rnm_passaporte").val()=="";
+                },
                 validateCPFCNPJ : true
             },
             rnm_passaporte: {

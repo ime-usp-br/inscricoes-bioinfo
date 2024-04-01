@@ -28,7 +28,7 @@ class StoreInscricaoRequest extends FormRequest
             'nascimento' => 'required',
             'nacionalidade' => 'required',
             'rg' => 'required_without:rnm_passaporte|nullable',
-            'cpf' => 'required',
+            'cpf' => 'required_without:rnm_passaporte|nullable',
             'rnm_passaporte' => 'required_without:rg|nullable',
             'endereco' => 'required',
             'telefone' => 'required',
