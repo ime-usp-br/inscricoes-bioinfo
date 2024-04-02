@@ -107,7 +107,7 @@
                             <label for="cpf">CPF:</label>
                         </div>
                         <div class="col-12 col-md">
-                            <input placeholder="For non-Brazilians who do not have this, enter NA" class="custom-form-control" type="text" name="cpf" id="cpf" value={{ old("cpf") ?? '' }}>
+                            <input placeholder="For non-Brazilians who don't have this, please contact us by email at {{ env('MAIL_PROGRAMA') }}" class="custom-form-control" type="text" name="cpf" id="cpf" required value={{ old("cpf") ?? '' }}>
                         </div>        
                     </div>
 
@@ -206,6 +206,12 @@
                         To confirm the enrollment, you must perform the fee payment (BRL 30,00).<br><br>
 
                         We do not provide refunds in case of withdrawal.
+                    </p>
+                    <p class="alert alert-warning">
+                        Caso tenha dificuldades com a submissão do formulario entre em contato pelo e-mail {{ env("MAIL_PROGRAMA") }}
+                    </p>
+                    <p class="alert alert-warning">
+                        If you have difficulties submitting the form, please contact us via email at  {{ env("MAIL_PROGRAMA") }}
                     </p>
                     <div class="row custom-form-group justify-content-center mt-5">
                         <button id="btn-submit" type="submit" class="btn btn-outline-dark">
@@ -334,9 +340,7 @@
                 }
             },
             cpf : {
-                required: function(element){
-                  return $("#rnm_passaporte").val()=="";
-                },
+                required: true,
                 validateCPFCNPJ : true
             },
             rnm_passaporte: {
